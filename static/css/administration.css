@@ -1,0 +1,13 @@
+h1 {
+    text-align: center;
+  }
+  .aChoice {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: #fdfdfd;
+    font-weight: bold;
+    width: 100%;
+  }
+  .aChoice:hover {
+    color: #fdfdfd !important;
+  }

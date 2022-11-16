@@ -1,0 +1,87 @@
+{%extends "base.html"%}
+{% block title %} Detalles de Producto {% endblock %} 
+{% block content %}
+ <div class="col-lg-12 col-xl-11">
+    {% csrf_token %}
+    <div class="card text-black" style="border-radius: 25px">
+      <div class="card-body p-md-5">
+        <div class="card mb-3" >
+          <div class="row g-0">
+            <div class="col-md-4">
+              {% for i in showProduct %} 
+              {% if i.field.widget.input_type == 'file' and i.value %}
+              <img
+                src="{{MEDIA_URL}}/imagenes/{{i.value}}"
+                class="img-fluid rounded-start"
+                alt=""
+                srcset=""
+              />
+              {% endif %} 
+              {% endfor %}
+            </div>
+  
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{showProduct.name.value}}</h5>
+                <p class="card-text description">
+                  {{showProduct.description.value}}
+                </p>
+                <p class="card-text price">$ {{showProduct.price.value|floatformat:2}}</p>
+                <p class="card-text amount">
+                  <span>Unidades Disponibles:</span> <input type="text" value="{{showProduct.amount.value}}" readonly>
+                </p>
+                  <a
+                  {% if request.user.is_authenticated %}
+                  data-product="{{selectProduct.id}}"
+                  data-action="add"
+                  {% else %}
+                  href="{% url 'login' %}"
+                  {% endif %}
+                  type="button" 
+                  class="btn btn-dark btn-lg addCart main-btn primary-btn update-cart">
+                  <script src="https://cdn.lordicon.com/pzdvqjsp.js"></script>
+                  <lord-icon
+                      src="https://cdn.lordicon.com/hyhnpiza.json"
+                      trigger="loop"
+                      delay="2000"
+                      colors="primary:#ffffff"
+                      style="width:32px;height:32px">
+                  </lord-icon>
+                  Agregar
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="row row-cols-1 row-cols-md-4 g-4">
+            {% for item in showProducts %}
+            <a href="{% url 'details_product' item.id %}" class="selector-product">
+              <div class="col">
+                <div class="card">
+                  <img src="{{item.image.url}}" alt="" srcset="" />
+                  <div class="card-body">
+                    <h5 class="card-title">{{item.name}}</h5>
+                    <p class="card-text">$ {{item.price|floatformat:2}}</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+            {% endfor %}
+          </div>
+        </div>
+        <a
+          href="{% url 'list_products' %}"
+          type="button"
+          class="btn btn-dark btn-lg main-btn primary-btn"
+          >Regresar</a
+        >
+      </div>
+    </div>
+  </div>
+  <!-- Font Awesome-->
+  <script
+    src="https://kit.fontawesome.com/3d89b02409.js"
+    crossorigin="anonymous"
+  ></script>
+   {% endblock %}

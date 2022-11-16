@@ -1,0 +1,238 @@
+img {
+    max-width: 60px;
+}
+
+a,
+a:focus,
+a:hover {
+    text-decoration: none;
+}
+
+a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+    text-decoration: none;
+    outline: none;
+}
+
+.order-id-content {
+    position: relative;
+}
+
+.order-id-content .order-id {
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: 400;
+    color: #000;
+}
+
+.order-id-content .order-meta {
+    margin-top: 4px;
+}
+
+.order-id-content .order-meta li {
+    display: inline-block;
+}
+
+.order-id-content .order-meta li .product {
+    font-size: 14px;
+    color: #4C4C4C;
+}
+
+.order-id-content .order-price {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 30px;
+    color: #000;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+ol,
+ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.order-product .order-product-table .table tbody tr td.product {
+    min-width: 250px;
+}
+
+.order-title {
+    background-color: #F2F2F2;
+    height: 48px;
+    padding: 0 16px;
+    border-radius: 8px;
+}
+
+.order-title .title {
+    line-height: 48px;
+    color: #000;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+.order-product .order-product-table .table {
+    margin-bottom: 0;
+}
+
+.table>tbody {
+    vertical-align: inherit;
+}
+
+.order-product .order-product-table .order-product-item .product-content {
+    padding-left: 8px;
+}
+
+h5 {
+    font-size: 18px;
+}
+
+.order-product .order-product-table .order-product-item .product-content .title a {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    color: #000;
+    transition: all 0.3s linear;
+}
+
+.order-product .order-product-table .order-product-item .product-content ul li {
+    display: inline-block;
+}
+
+.order-product .order-product-table .table tbody tr td.price {
+    width: 100px;
+}
+
+.order-product .order-product-table .product-price {
+    text-align: right;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    color: #000;
+}
+
+.order-product .payable-total {
+    border-top: 1px solid #F2F2F2;
+    padding: 8px 16px;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    justify-content: space-between;
+}
+
+.order-product .payable-total .value {
+    line-height: 32px;
+    font-size: 14px;
+    color: #000;
+    font-weight: 500;
+}
+
+.order-product .payable-total .price {
+    line-height: 32px;
+    font-size: 16px;
+    color: #000;
+    font-weight: 500;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.single-order-details .order-details-content .single-details-item {
+    padding: 8px 16px 0;
+}
+
+.single-order-details .order-details-content .single-details-item .details-title {
+    width: 40%;
+    margin-top: 8px;
+}
+
+.single-order-details .order-details-content .single-details-item .details-title .title {
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 400;
+    color: #4C4C4C;
+}
+
+.single-order-details .order-details-content .single-details-item .details-content {
+    width: 60%;
+    margin-top: 8px;
+}
+
+.single-order-details .order-details-content .single-details-item .details-content p {
+    font-size: 16px;
+    line-height: 22px;
+    color: #000;
+    font-weight: 400;
+}
+
+.pt-20 {
+    padding-top: 20px;
+}
+
+.order-btn .main-btn {
+    margin-top: 12px;
+}
+
+.primary-icon-text,
+.primary-btn-text {
+    color: #542DED;
+}
+
+.main-btn {
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 0;
+    padding: 0 16px;
+    font-size: 16px;
+    font-weight: 500;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+    z-index: 5;
+    transition: all 0.4s linear;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    background-color: transparent;
+}
+
+.error-icon-text,
+.error-btn-text {
+    color: #FF4B22;
+}
+
+@media (min-width: 992px) {
+    .col-lg-9 {
+        flex: 0 0 auto;
+        width: 100% !important;
+    }
+}
+#user-info .form-field{
+    padding: 1rem 0 1rem 0;
+}
+
+#shipping-info .form-field {
+    padding: 1rem 0 1rem 0;
+}
+
+@media (min-width: 992px) {
+    .col-lg-6 {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+}

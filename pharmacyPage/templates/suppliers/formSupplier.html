@@ -1,0 +1,65 @@
+<form enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+      <div class="mb-3">
+  
+        <label for="" class="form-label">Nombre:</label>
+        <div class="d-flex flex-row align-items-center mb-4">
+          <div class="form-outline flex-fill mb-0">
+            <input id="" class="form-control" aria-describedby="helpId" placeholder="Nombre" {{ suppliers.name | default:'' }}
+          </div>
+        </div>
+
+        <label for="" class="form-label">Apellido:</label>
+        <div class="d-flex flex-row align-items-center mb-4">
+          <div class="form-outline flex-fill mb-0">
+            <input id="" class="form-control" aria-describedby="helpId" placeholder="Apellido" {{ suppliers.last_name | default:'' }}
+          </div>
+        </div>
+
+      <label for="" class="form-label">Telefono:</label>
+        <div class="d-flex flex-row align-items-center mb-4">
+          <div class="form-outline flex-fill mb-0">
+            <input id="" type="number" class="form-control" aria-describedby="helpId" placeholder="Telefono" {{ suppliers.tel | default:'' }}
+          </div>
+        </div>
+
+      <label for="" class="form-label">Direccion:</label>
+        <div class="d-flex flex-row align-items-center mb-4">
+          <div class="form-outline flex-fill mb-0">
+            <input id="" class="form-control" aria-describedby="helpId" placeholder="Direccion" {{ suppliers.address | default:'' }}
+          </div>
+        </div>
+
+      <label for="" class="form-label">Correo:</label>
+        <div class="d-flex flex-row align-items-center mb-4">
+          <div class="form-outline flex-fill mb-0">
+            <input id="" class="form-control" aria-describedby="helpId" placeholder="Correo" {{ suppliers.email | default:'' }}
+          </div>
+        </div>
+
+      <label for="" class="form-label">Cedula:</label>
+        <div class="d-flex flex-row align-items-center mb-4">
+          <div class="form-outline flex-fill mb-0">
+            <input id="" type="number" class="form-control" aria-describedby="helpId" placeholder="Cedula" {{ suppliers.documentation | default:'' }}
+          </div>
+      </div>
+
+      <label for="" class="form-label">Descripcion:</label>
+        <div class="d-flex flex-row align-items-center mb-4">
+          <div class="form-outline flex-fill mb-0">
+            <textarea id="" type="text" class="form-control" aria-describedby="helpId" placeholder="Descripcion" {{ suppliers.description | default:'' }}</textarea>
+          </div>
+      </div>
+
+      </div>
+
+      <div class="col-12 help-text">{{suppliers.errors}}</div>
+      
+      <input name="" id="" class="btn btn-warning b" type="submit" value="Guardar">
+      <a name="" id="" class="btn btn-dark b" href="{% url 'suppliers' %}" role="button">Cancelar</a>
+  </form>
+  <style>
+    .b{
+      font-weight: bold;
+    }
+  </style>

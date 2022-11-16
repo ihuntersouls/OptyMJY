@@ -1,0 +1,373 @@
+{%extends "base.html"%}
+{% block title %} Proceso de Pago {% endblock %}
+{% block content %}
+
+<div class="container"> 
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="checkout-style-1">
+          <div class="checkout-table table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="product">Producto</th>
+                  <th class="quantity">Cantidad</th>
+                  <th class="price">Precio</th>
+                  <th class="action">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in items %}
+                <tr>
+                  <td>
+                    <div class="product-cart d-flex">
+                      <div class="product-thumb">
+                        <img src="{{item.product.imageURL}}" alt="Product">
+                      </div>
+                      <div class="product-content media-body">
+                        <h5 class="title"><a href="#0">{{item.product.name}}</a></h5>
+                        <span>{{item.product.category}}</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="product-quantity d-inline-flex">
+                      <button type="button" id="sub" class="update-cart" data-product="{{item.product.id}}" data-action="remove">
+                        <i class="fa-solid fa-minus"></i>
+                      </button>
+                      <input type="text" value="{{item.quantity}}" readonly>
+                      <button type="button" id="add" class="update-cart" data-product="{{item.product.id}}" data-action="add">
+                        <i class="fa-solid fa-plus"></i>
+                      </button>
+                    </div>
+                  </td>
+                  <td>
+                    <p class="price">${{item.product.price|floatformat:2}}</p>
+                  </td>
+                  <td>
+                    <ul class="action">
+                      <li>
+                        <p class="price">${{item.get_total|floatformat:2}}</p>
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class="
+              checkout-coupon-total checkout-coupon-total-2
+              d-flex
+              flex-wrap
+            ">
+            <div class="checkout-total">
+              <div class="single-total total-payable">
+                <p class="value">Total a Pagar:</p>
+                <p class="price">{{order.get_cart_total|floatformat:2}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="checkout-btn d-sm-flex justify-content-between">
+            <div class="single-btn">
+              <a href="{% url 'list_products' %}" class="main-btn primary-btn-border">Continuar Comprando</a>
+            </div>
+            <div class="single-btn">
+              <a 
+              {% comment %} {% if request.user.is_authenticated %} {% endcomment %}
+              href="{% url 'checkout' %}"
+              {% comment %} {% else %}
+              href="{% url 'login' %}"
+              {% endif %} {% endcomment %}
+              >
+              <button class="main-btn primary-btn">Siguiente
+              </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% comment %} <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .checkout-style-1 {
+        border-radius: 8px;
+    }
+    .checkout-style-1 .checkout-table .table {
+        margin-bottom: 0;
+    }
+    .checkout-style-1 .checkout-table .table thead tr th.product {
+        min-width: 240px;
+    }
+    .checkout-style-1 .checkout-table .table thead tr th {
+        padding: 9px 16px;
+        border: 0;
+          border-bottom-color: currentcolor;
+          border-bottom-style: none;
+          border-bottom-width: 0px;
+        border-bottom: 1px solid #F2F2F2;
+        font-size: 14px;
+        font-weight: 300;
+        color: #7D7D7D;
+    }
+    .checkout-style-1 .checkout-table .table thead tr th.quantity {
+        width: 100px;
+    }
+    .checkout-style-1 .checkout-table .table thead tr th.price {
+        min-width: 80px;
+        width: 80px;
+    }
+    .checkout-style-1 .checkout-table .table thead tr th.action {
+        min-width: 100px;
+        width: 100px;
+    }
+    .table > :not(:first-child) {
+        border-top: 2px solid currentColor;
+    }
+    audio, canvas, iframe, img, svg, video {
+        vertical-align: middle;
+    }
+    img {
+        max-width: 60px;
+    }
+    .checkout-style-1 .checkout-table .product-cart .product-content {
+        padding-left: 8px;
+    }
+    h5 {
+        font-size: 18px;
+    }
+    .checkout-style-1 .checkout-table .product-cart .product-content .title a {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 22px;
+        color: #000;
+        transition: all 0.3s linear;
+    }
+    a, i, span {
+        display: inline-block;
+    }
+    a, a:focus, a:hover {
+        text-decoration: none;
+    }
+    .checkout-style-1 .checkout-table .product-cart .product-content span {
+        font-weight: 300;
+        font-size: 13px;
+        line-height: 16px;
+        margin-top: 4px;
+        color: #7D7D7D;
+    }
+    .checkout-style-1 .checkout-table .product-quantity {
+        background-color: #fff;
+        border: 1px solid #EFEFEF;
+        overflow: hidden;
+        border-radius: 4px;
+        display: inline-block;
+    }
+    .checkout-style-1 .checkout-table .product-quantity button {
+        width: 30px;
+        height: 35px;
+        padding: 0;
+        font-size: 20px;
+        border: 0;
+        background-color: transparent;
+        transition: all 0.4s linear;
+        color: rgba(0, 0, 0, 0.8);
+    }
+    [type="button"]:not(:disabled), [type="reset"]:not(:disabled), [type="submit"]:not(:disabled), button:not(:disabled) {
+        cursor: pointer;
+    }
+    .checkout-style-1 .checkout-table .product-quantity input {
+        width: 45px;
+        height: 35px;
+        border: 0;
+        padding: 0 5px;
+        text-align: center;
+        font-weight: 700;
+        background-color: transparent;
+        color: #000;
+    }
+    .checkout-style-1 .checkout-table .price {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 22px;
+        color: #000;
+    }
+    ol, ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+    }
+    
+    .checkout-style-1 .checkout-table .action li a.delete {
+        color: #FF4B22;
+    }
+    .checkout-style-1 .checkout-table .action li a {
+        font-size: 24px;
+        width: 32px !important;
+        height: 32px !important;
+        line-height: 32px;
+        text-align: center;
+    }
+    .checkout-style-1 .checkout-coupon-total.checkout-coupon-total-2 .checkout-coupon {
+        width: 70%;
+    }
+    .checkout-style-1 .checkout-coupon-total .checkout-coupon {
+        width: 50%;
+        padding: 16px;
+    }
+    .checkout-style-1 .checkout-coupon-total .checkout-coupon span {
+        font-size: 13px;
+        line-height: 16px;
+        color: #000;
+    }
+    .checkout-style-1 .checkout-coupon-total .checkout-coupon .single-form {
+        margin-top: 0;
+    }
+    .checkout-style-1 .checkout-coupon-total .checkout-coupon .single-form .form-input {
+        width: 194px;
+        margin-top: 8px;
+        margin-right: 8px;
+    }
+    .checkout-style-1 .checkout-coupon-total .checkout-coupon .single-form .form-input {
+        width: 194px;
+        margin-top: 8px;
+        margin-right: 8px;
+    }
+    .single-form .form-input.form textarea, .single-form .form-input.form input {
+        padding: 0 15px;
+    }
+    .form-default .form-input textarea, .form-default .form-input input {
+        color: #4C4C4C;
+        background-color: #EFEFEF;
+    }
+    .checkout-style-1 .checkout-coupon-total .checkout-coupon .single-form .main-btn {
+        margin-top: 8px;
+    }
+    .primary-icon, .primary-btn {
+        background-color: #542DED;
+        color: #fff;
+    }
+    .single-form {
+        margin-top: 16px;
+        position: relative;
+    }
+    .single-form .form-input {
+        position: relative;
+    }
+    .single-form .form-input.form textarea, .single-form .form-input.form input {
+        padding: 0 15px;
+    }
+    .single-form .form-input textarea, .single-form .form-input input {
+        width: 100%;
+        height: 40px;
+        padding: 0 15px;
+        padding-left: 40px;
+        border-radius: 4px;
+        transition: all 0.3s linear;
+        border: 1px solid transparent;
+    }
+    button, input, optgroup, select, textarea {
+        margin: 0;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+    }
+    .main-btn {
+        display: inline-block;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        user-select: none;
+        border: 0;
+        padding: 0 16px;
+        font-size: 16px;
+        font-weight: 500;
+        height: 40px;
+        line-height: 40px;
+        cursor: pointer;
+        z-index: 5;
+        transition: all 0.4s linear;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border-radius: 5px;
+        overflow: hidden;
+        position: relative;
+    }
+    .checkout-style-1 .checkout-table .table tbody tr td {
+        border: 0;
+        border-bottom-color: currentcolor;
+        border-bottom-style: none;
+        border-bottom-width: 0px;
+        border-bottom: 1px solid #F2F2F2;
+        padding: 16px;
+        vertical-align: middle;
+    }
+    p {
+        font-size: 16px;
+        line-height: 22px;
+        font-weight: 400;
+        color: rgba(0, 0, 0, 0.64);
+        margin: 0;
+    }
+    .checkout-style-1 .checkout-table .action li {
+        display: inline-block;
+    }
+    .navbar-brand{
+        color: #fff;
+    }
+    .checkout-style-1 .checkout-coupon-total.checkout-coupon-total-2 .checkout-total {
+        width: 30%;
+    }
+    .checkout-style-1 .checkout-coupon-total .checkout-total {
+        width: 50%;
+        border-left: 1px solid #F2F2F2;
+    }
+    .checkout-style-1 .checkout-coupon-total.checkout-coupon-total-2 .checkout-total .single-total {
+        justify-content: space-between;
+    }
+    .checkout-style-1 .checkout-coupon-total .checkout-total .single-total {
+        display: -moz-flex;
+        display: -ms-flex;
+        display: -o-flex;
+        display: flex;
+        justify-content: flex-end;
+        padding: 0 8px;
+    }
+    .checkout-style-1 .checkout-coupon-total .checkout-total .single-total .value {
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 32px;
+        margin-right: 16px;
+        color: #000;
+    }
+    .checkout-style-1 .checkout-coupon-total.checkout-coupon-total-2 .checkout-total .single-total .price {
+        width: auto;
+    }
+    .checkout-style-1 .checkout-coupon-total .checkout-total .single-total .price {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 32px;
+        color: #000;
+        width: 85px;
+    }
+    .checkout-style-1 .checkout-btn {
+        padding: 0px 16px 16px;
+        border-top: 1px solid #F2F2F2;
+    }
+    .checkout-style-1 .checkout-btn .main-btn {
+        margin-top: 16px;
+    }
+    .primary-icon-border, .primary-btn-border {
+        border: 1px solid #542DED;
+        color: #542DED;
+        line-height: 38px;
+    }
+  </style> {% endcomment %}
+
+{% endblock %}

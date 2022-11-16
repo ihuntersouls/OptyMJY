@@ -1,0 +1,14 @@
+{%extends "base.html"%} {% block title %} Editar Productos {% endblock %} 
+{% block content %}
+
+<div class="card">
+  <div class="card-header">
+    <strong>Editar Productos</strong>
+  </div>
+  <div class="card-body">
+    <h4 class="card-title">Informacion del Producto</h4>
+    {% include 'products/form.html' %}
+  </div>
+  <div class="card-footer text-muted"></div>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{%extends "base.html"%} {% block title %} Categoria {% endblock %} {% block content %}
+
+<h1>{{cats}}</h1>
+<div class="col-lg-8">
+  {% csrf_token %}
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    {% for item in category_product %}
+    <a href="{% url 'details_product' item.id %}">
+      <div class="col">
+        <div class="card">
+          <img src="{{item.image.url}}" alt="" srcset="" />
+          <div class="card-body">
+            <h5 class="card-title">{{item.name}}</h5>
+            <p class="card-text">$ {{item.price}}</p>
+          </div>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+<style>
+  a {color: #212529;text-decoration: none;}
+  a:hover {color: #212529;}
+  .col:hover {box-shadow: 0px 0px 20px #bfbfbf;}
+  .card-title {font-weight: 200;}
+  .card-text {color: #59bb70;}
+  h4 {font-weight: 700;}
+  .category {color: #fdfdfd;background: #212529;text-align: center;padding: 4px;}
+  .mb-5 {margin-bottom: 0 !important;}
+  h1{margin-bottom: 1.5rem;}
+  .col-lg-8{width:100%;}
+  h5{height: 3rem;}
+  img {
+    max-width: 304px;
+  }
+</style>
+
+
+{% endblock %}

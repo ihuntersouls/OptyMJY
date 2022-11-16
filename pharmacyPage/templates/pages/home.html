@@ -1,0 +1,36 @@
+{%extends "base.html"%} {% block title %} Inicio {% endblock %} 
+{% block content %}
+
+<div class="p-5 bg-light">
+  <div class="container">
+    <h1 class="display-3">FARMACIA OPTI MYJ</h1>
+    <p class="lead">Elige una opcion a administrar</p>
+    <hr class="my-2" />
+    <div class="container overflow-hidden text-center">
+      <div class="row gx-5">
+        <div class="col p-3 border bg-dark">
+          <a class="aChoice" href="{% url 'products' %}">
+            Productos
+          </a>
+        </div>
+        <div class="col p-3 border bg-warning">
+          <a class="aChoice" href="{% url 'categories' %}">
+            Categorias
+          </a>
+        </div>
+        <div class="col p-3 border bg-dark">
+          <a class="aChoice" href="{% url 'suppliers' %}">
+            Proveedores
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .col{
+    margin: 0 1.5rem 0 1.5rem;
+    border-radius: 1rem;
+  }
+</style>
+{% endblock %}

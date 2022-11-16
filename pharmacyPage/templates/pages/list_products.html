@@ -1,0 +1,58 @@
+{%extends "base.html"%}
+{% block title %} Lista de Productos {% endblock %}
+{% block content %}
+
+<div class="col-lg-4 mt-3 mb-4">
+  <div
+    class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white"
+    style="width: 380px"
+  >
+    <p
+      class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom"
+    >
+      <span class="fs-5 fw-semibold">
+        <script src="https://cdn.lordicon.com/pzdvqjsp.js"></script>
+        <lord-icon
+          src="https://cdn.lordicon.com/svbmmyue.json"
+          trigger="hover"
+          style="width: 40px; height: 40px"
+        >
+        </lord-icon>
+        <strong>Categorias</strong></span
+      >
+    </p>
+    {% for i in categories %}
+    <div class="list-group list-group-flush border-bottom scrollarea">
+      <a
+        href="{% url 'category' i.name %}"
+        class="list-group-item list-group-item-action py-3 lh-sm"
+      >
+        <div class="d-flex w-100 align-items-center justify-content-between">
+          <strong class="mb-1">{{ i.name }}</strong>
+        </div>
+        <div class="col-10 mb-1 small">{{ i.description }}</div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="col-lg-8 showProducts" style="width: 65%;">
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    {% for item in showProducts %}
+    <a href="{% url 'details_product' item.id %}" class="selector-product">
+      <div class="col">
+        <div class="card">
+          <img src="{{item.image.url}}" alt="" srcset="" />
+          <div class="card-body">
+            <h5 class="card-title">{{item.name}}</h5>
+            <p class="card-text">$ {{item.price|floatformat:2}}</p>
+          </div>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,9 @@
+#img-product {
+  max-width: 100px;
+}
+
+#action {
+  display: flex;
+  flex-direction: inherit;
+  border-style: unset;
+}

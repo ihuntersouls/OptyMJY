@@ -1,0 +1,17 @@
+.notification span {
+    font-size: 10px;
+    background: red;
+    border-radius: 100px 100px 100px 0px;
+    padding: 3px;
+}
+
+.btn-group a button {
+    margin-right: 10px;
+    display: flex;
+    flex-direction: inherit;
+    margin-right: 10px;
+}
+
+.hidden{
+	display: none!important;
+}

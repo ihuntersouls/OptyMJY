@@ -1,0 +1,86 @@
+<form enctype="multipart/form-data" method="post">
+  {% csrf_token %}
+    <div class="mb-3">
+
+      <label for="" class="form-label">Nombre:</label>
+      <div class="d-flex flex-row align-items-center mb-4">
+        <div class="form-outline flex-fill mb-0">
+          <input id="" class="form-control" aria-describedby="helpId" placeholder="Nombre" {{ formulario.name | default:'' }}
+        </div>
+      </div>
+
+      <label for="imageImagen" class="form-label">Imagen:</label>
+      {% for campo in formulario  %}
+      {% if campo.field.widget.input_type == 'file' and campo.value  %} 
+      <br>
+      <img src="{{MEDIA_URL}}/imagenes/{{campo.value}}" width="100" alt="" srcset="">
+      {% endif %}
+      {% endfor %}
+      <input type="file" class="form-control" name="image" id="" aria-describedby="helpId" placeholder="Imagen" value="formulario.image">
+
+      <label for="" class="form-label">Descripcion:</label> 
+      <div class="d-flex flex-row align-items-center mb-4">
+        <div class="form-outline flex-fill mb-0">
+          <textarea id="" class="form-control" aria-describedby="helpId" placeholder="Descripcion" {{ formulario.description | default:'' }}
+        </div>
+      </div>
+
+      <label for="" class="form-label">Precio:</label> 
+      <div class="input-group mb-3">
+        <span class="input-group-text">$</span>
+        <input type='float' step='0.00' class="form-control" placeholder="Precio" aria-label="Amount (to the nearest dollar)" {{ formulario.price | default:'' }}
+        <span class="input-group-text">.00</span>
+      </div>
+      
+      <label for="" class="form-label">Expiracion:</label>
+      <div class="d-flex flex-row align-items-center mb-4">
+        <div class="form-outline flex-fill mb-0">
+          <input type="date" dateFormat:'yyyy-MM-dd' id="" class="form-control" aria-describedby="helpId" placeholder="Expiracion" {{ formulario.date_end | default:'' }}
+        </div>
+      </div>
+
+      <label for="" class="form-label">Categoria:</label>
+      <div class="d-flex flex-row align-items-center mb-4">
+        <div class="form-outline flex-fill mb-0">
+          <select id="id_category" class="form-control" aria-describedby="helpId" placeholder="Categoria" {{ formulario.category | default:'' }}
+        </div>
+      </div>
+
+      <label for="" class="form-label">Cantidad:</label>
+      <div class="d-flex flex-row align-items-center mb-4">
+        <div class="form-outline flex-fill mb-0">
+          <input type="number" id="" class="form-control" aria-describedby="helpId" placeholder="Cantidad" {{ formulario.amount | default:'' }}
+        </div>
+      </div>
+
+      <label for="" class="form-label">Proveedor:</label>
+      <div class="d-flex flex-row align-items-center mb-4">
+        <div class="form-outline flex-fill mb-0">
+          <select id="id_supplier" class="form-control" aria-describedby="helpId" placeholder="Proveedor" {{ formulario.supplier | default:'' }}
+        </div>
+      </div>
+
+      <label for="" class="form-label">Lote:</label>
+      <div class="d-flex flex-row align-items-center mb-4">
+        <div class="form-outline flex-fill mb-0">
+          <input type="number" id="" class="form-control" aria-describedby="helpId" placeholder="Lote" {{ formulario.lote | default:'' }}
+        </div>
+      </div>
+
+      {% comment %} <label for="" class="form-label">Fecha de ingreso:</label>
+      <div class="d-flex flex-row align-items-center mb-4">
+        <div class="form-outline flex-fill mb-0">
+          <input type="date" dateFormat:'yyyy-MM-dd' id="" class="form-control" aria-describedby="helpId" placeholder="Fecha de ingreso" {{ formulario.created_at | default:'' }}
+        </div>
+      </div> {% endcomment %}
+
+    </div>
+
+    <div class="col-12 help-text">{{formulario.errors}}</div>
+    
+    <input name="" id="" class="btn btn-warning b" type="submit" value="Guardar">
+    <a name="" id="" class="btn btn-dark b" href="{% url 'products' %}" role="button">Cancelar</a>
+</form>
+<style>
+  .b{font-weight: bold;}
+</style>

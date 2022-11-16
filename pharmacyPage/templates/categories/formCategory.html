@@ -1,0 +1,29 @@
+<form enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+      <div class="mb-3">
+  
+        <label for="" class="form-label">Nombre:</label>
+        <div class="d-flex flex-row align-items-center mb-4">
+          <div class="form-outline flex-fill mb-0">
+            <input id="" class="form-control" aria-describedby="helpId" placeholder="Nombre" {{ categories.name | default:'' }}
+          </div>
+        </div>
+      </div>
+  
+      <label for="" class="form-label">Descripcion:</label> 
+      <div class="d-flex flex-row align-items-center mb-4">
+       <div class="form-outline flex-fill mb-0">
+         <textarea id="" class="form-control" aria-describedby="helpId" placeholder="Descripcion" {{ categories.description | default:'' }}</textarea>
+       </div>
+     </div>
+
+      <div class="col-12 help-text">{{categories.errors}}</div>
+      
+      <input name="" id="" class="btn btn-warning b" type="submit" value="Guardar">
+      <a name="" id="" class="btn btn-dark b" href="{% url 'categories' %}" role="button">Cancelar</a>
+  </form>
+  <style>
+    .b{
+      font-weight: bold;
+    }
+  </style>

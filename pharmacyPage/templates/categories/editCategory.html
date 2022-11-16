@@ -1,0 +1,14 @@
+{%extends "base.html"%} {% block title %} Editar Categoria {% endblock %} 
+{% block content %}
+
+<div class="card">
+  <div class="card-header">
+    <strong>Editar Categoria</strong>
+  </div>
+  <div class="card-body">
+    <h4 class="card-title">Informacion Categoria</h4>
+    {% include 'categories/formCategory.html' %}
+  </div>
+  <div class="card-footer text-muted"></div>
+</div>
+{% endblock %}
